@@ -1,0 +1,54 @@
+
+
+
+<h1> Tabel Users </h1>
+<table class="table table-striped" ng-controller="userCtrl" ng-init="dapatkanDataUsers()">
+					<thead>
+						<th>#</th>
+						<th ng-click="sort('nama')" class="sorting"> Nama <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='nama'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+						<th ng-click="sort('akses')" class="sorting"> Akses <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='akses'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+					</thead>
+					<tbody>
+							<!-- inputan untuk memasukkan data -->
+						<tr>
+							<td></td>
+							<td>
+								<input type="text" ng-model="hasil" placeholder="Search...">
+							</td>
+							<td>
+								
+							</td>
+							<td>
+								<!-- <button class="btn btn-primary" ng-click="simpanData()">Simpan</button> 
+							<a href="#/tambahpelanggan" class="btn btn-info" data-toggle="modal" data-target="#myModal">  Tambah </a> -->
+							
+								<!-- Trigger the modal with a button -->
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalUsers"> Tambah </button>
+									    
+									  <!-- Modal -->
+								<div modal-form-users> </div>
+							</td>
+						</tr>
+
+						<!-- ng-repeat untuk merender semua data users -->
+						<tr dir-paginate="itemusers in dataUsers | filter:hasil | orderBy:sortKey:reverse | itemsPerPage: pageSize " current-page="currentPage">
+							<td>{{$index + 1 + (currentPage * pageSize - kurang)}}</td> <!-- nomor baris -->
+							<td>{{itemusers.nama}}</td>
+							<td>{{itemusers.akses}}</td>
+							<td>
+								<!-- tombol untuk menset inputan sesuai dengan baris yang dipilih agar bisa diedit -->
+								<button class="btn btn-success" data-toggle="modal" data-target="#myModalUsers" ng-click="ubahUsers(itemusers,usersText)"> Ubah </button>
+								<!-- tombol untuk menghapus data -->
+								<button class="btn btn-danger" ng-click="hapusDataUsers(itemusers.id_user)">Hapus</button>
+							</td>
+						</tr>
+					</tbody>
+			</table>
+
+				<dir-pagination-controls
+			       max-size="5"
+			       direction-links="true"
+			       boundary-links="true" >
+			    </dir-pagination-controls>
+
+					

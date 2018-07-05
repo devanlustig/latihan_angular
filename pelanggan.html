@@ -1,0 +1,63 @@
+
+
+
+<h1> Tabel Pelanggan </h1>
+<table class="table table-striped  table-condensed" ng-controller="MyCtrl" ng-init="dapatkanData()">
+						<thead>
+
+						<th>#</th>
+						<th ng-click="sort('nama')" class="sorting"> Nama <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='nama'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+
+						<th ng-click="sort('alamat')" class="sorting"> Alamat <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='alamat'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+
+						<th ng-click="sort('telp')" class="sorting"> No.Telepon <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='telp'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+
+						<th ng-click="sort('email')" class="sorting"> Email <span class="glyphicon glyphicon-sort-icon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+
+						<th style="text-align:right;"><input type="text" ng-model="hasil" placeholder="Search..."></th>
+						</thead>
+						<thead>
+						<!-- inputan untuk memasukkan data -->
+						<tr>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th>
+						<!-- <button class="btn btn-primary" ng-click="simpanData()">Simpan</button> 
+						<a href="#/tambahpelanggan" class="btn btn-info" data-toggle="modal" data-target="#myModal">  Tambah </a> -->
+								
+						<!-- Trigger the modal with a button -->
+						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"> Tambah </button>
+						<!-- Modal -->
+						<div modal-form-pelanggan> </div>
+						</th>
+						</tr>
+						</thead>
+
+						<tbody>
+						<!-- ng-repeat untuk merender semua data pelanggan -->
+							<tr dir-paginate="item in dataPelanggan | filter:hasil | orderBy:sortKey:reverse | itemsPerPage: pageSize " current-page="currentPage">
+								<td>{{$index + 1 + (currentPage * pageSize - kurang)}}</td> <!-- nomor baris -->
+								<td>{{item.nama}}</td>
+								<td>{{item.alamat}}</td>
+								<td>{{item.telp}}</td>
+								<td>{{item.email}}</td>
+								<td>
+									<!-- tombol untuk menset inputan sesuai dengan baris yang dipilih agar bisa diedit -->
+									<button class="btn btn-success" data-toggle="modal" data-target="#myModal" ng-click="ubah(item,pelangganText)">Ubah</button>
+									<!-- tombol untuk menghapus data -->
+									<button class="btn btn-danger" ng-click="hapusData(item.id)">Hapus</button>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<dir-pagination-controls
+				       max-size="5"
+				       direction-links="true"
+				       boundary-links="true" >
+				    </dir-pagination-controls>
+

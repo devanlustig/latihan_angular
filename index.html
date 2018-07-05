@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Latihan Angular JS</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.js"></script>
+		<script src="js/app.js"></script>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<!-- menset awa aplikasi -->
+	<body ng-app="MyApps">
+		<div class="container">
+			<div class="row">
+
+				<fieldset>
+					<div menu-title></div>
+					<!-- membuat tabel untuk merender data -->
+					<!-- dapatkan semua data dari server pada saat aplikasi pertama kali dijalankan -->
+					<div ng-view></div>
+				</fieldset>
+				
+			</div>
+		</div>
+
+		<script src="js/jquery.min.js"></script>
+  		<script src="js/bootstrap.js"></script>
+  		<script src="js/dirPagination.js"></script>
+  		<script src="js/MyCtrl.js"></script>
+  		<script src="js/userCtrl.js"></script>
+  		
+  		
+	</body>
+</html>
